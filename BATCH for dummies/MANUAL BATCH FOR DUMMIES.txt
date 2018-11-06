@@ -1,0 +1,20 @@
+rem con el "rem" se ingresa el comentario de una linea o sino con ::
+:: Asi también se puede comentar.
+
+:: En batch todas las variables son globales por defecto (visibles y modificables por otros scripts).
+
+::Para realizar variables locales----
+setlocal
+set variable1=valor1
+
+set variable2=texto con espacios
+
+:: variable3 = es otro texto con espacios
+::el %variable% será reemplazado por lo que contenga esa variable
+set variable3=es otro %variable2% 
+
+::para variables con caracteres especiales se debe utilizar "" 
+set variable4="Old & News"
+
+echo variable3
+pause

@@ -1,0 +1,103 @@
+<!--HTML FOR DUMMIES-->
+
+<!--
+
+<etiqueta atributo="valor" > Texto o datos </etiqueta>
+
+Utiles (que se abren solamente):------------------------------------------------------
+<br> : Salto de linea
+<hr/>: línea divisoria
+<img alt="texto cuando la imagen no cargue (descripcion)" title="pop-up cuando se para sobre la imagen" width?"25px"(anchura) height="25px"(altura)> -> PARA CARGAR IMAGENES
+
+
+Se abren y se cierran:----------------------------------------------------------------
+<strong>: negrita
+<em>: cursiva
+<span id="resaltado" class="rojo amarillo">: etiqueta que no hacen accion sobre el texto pero se le pueden agregar identificadores para utilizar con css.
+<blockquote>: Realiza un salto de linea y da un tab para "resaltar una linea"
+<u>,<b>,<i>: subrayado, negrita y cursiva
+<form action="indica a donde va a ir el formulario" method="post, get, u otro">
+
+
+-->
+
+<!--Etiquetas:
+
+
+<strong> </strong> <!--Etiqueta para marcar en negrita(?), existen los h1 h2 h3 también-->
+
+<!DOCTYPE HTML> <!--Indica la versión del html (esta es la actual html5)-->
+<html lang="es"> <!--el lang indica el indica el idioma de la pagina-->
+	<head> <!--para metadatos-->
+		<title>Mi primera web</title>
+	</head>
+	<body>
+		<h1>Titulo de mi página</h1><!-- Encabezado nivel 1-->
+		<h2>Bienvenidos a mi web</h2><!-- Encabezado nivel 2-->
+		<p><strong>Hola mundo, es una linea </strong><br> Hice un salto de linea</p><!-- Parrafos -->
+		
+		<hr/><!--Linea divisoria-->
+		
+		 <center><h3><u>Imagen</u>: <br> </b></h3>
+		<img src="Foto.jpg" alt="texto cuando la imagen no cargue (descripcion)" title="pop-up cuando se para sobre la imagen" width?"455px" height="455px"></center>
+		
+		
+		<hr/>
+		<!--CSS PARA ESTILIZAR EL FORMULARIO Y PHP PARA GUARDAR LA INFO EN ALGUNA BASE DE DATOS O REALIZAR ACCIONES-->
+		<h4>Formulario</h4>
+		<form><!--SE CREA EL FORMULARIO, DENTRO SE PUEDEN INDICAR VARIOS TIPOS DE INPUTS PARA PODER ENVIAR ESE FORMULARIO A UNA DB-->
+			<p>
+				<label for="nombre">Nombre: </label><!--Nombre del campo indicado en la pagina <label for="a cual input indica este label">Nombre</label><!--Nombre del campo indicado en la pagina-->
+				<input type="text" name="nombre" placeholder="Indica tu nombre" /> <!--<input type="text"(indica el tipo de dato dentro del formulario) name="nombre"(nombre del formulario) placeholder="Indica un texto dentro del formulario para dar una descripcion" />-->
+			</p>
+			<p>
+				<label for="descripcion">Descripcion: </label>
+				<br>
+				<textarea name="descripcion">asdasdsad</textarea>
+			</p>
+			<p>
+				<input type="radio" name="genero" value="hombre"> Hombre <br/>
+				<input type="radio" name="genero" value="mujer"> Mujer <br/>
+				<input type="radio" name="genero" value="nada"> Nada <br/>				<!--<input type="radio"(radiobutton para pickear una opcion) name="genero"(nombre de la opcion) value="Indica el valor que se va a pickear" />-->
+			</p>
+			<p>
+				<select><!--<select>: Crea un campo desplegable con opciones-->
+					<option>Hombre</option><!--Indica las opciones que tiene el desplegable-->
+					<option>Mujer</option>
+					<option>Nada</option>
+				</select>
+				
+				<input type="submit" value="Enviar formulario"/> <!--Crea el boton para enviar datos ingresados en el formulario-->
+			</p>
+			
+		</form>
+		
+		<hr/>
+		<p>
+			Lorem ipsum dolor sit amet, consectetuer adipiscing elit. 
+			<blockquote>"Aenean commodo ligula eget dolor." (Esto es un blockquote)</blockquote> 
+			Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh.
+		</p>
+		<h4>
+		<!--Listas: Se puede realizar listas enlazadas-->
+			<ol><!--Lista ordenada: formato numerico (Ordenated List)-->
+				<li>Manzana
+					<ul>Roja</ul>
+					<ul>Verde</ul>
+				</li><!--Indica los puntos de la lista-->
+				<li>Pera</li>
+				<li>Banana</li>
+				<li>Melon</li>
+			</ol>
+			<ul><!--Lista no ordenada (Unordenated List)-->
+				<li>Manzana</li><!--Indica los puntos de la lista -->
+				<li>Pera</li>
+				<li>Banana</li>
+				<li>Melon</li>
+			</ul>
+		</h4>
+		
+		
+		
+	</body>
+</html>

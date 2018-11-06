@@ -1,0 +1,232 @@
+﻿//A10 de doble ejecucion de IVR tiene datos para realizar lo de 7x24hs (VALIDACIÓN)
+
+//CREACION DE DUMMIES PARA HACER PRUEBAS QUEMANDO VALORES DE RESPUESTA
+//-Como setear una lista de bloques .
+//-Manejo de Filas y columnas.
+
+private List<IResultSetBlock> dummyRS() {
+		List<IResultSetBlock> a = new ArrayList<IResultSetBlock>();  --------------------------> //Crea una lista de bloques 
+		// RS0
+		IResultSetHeader rs0metaData = new ResultSetHeader(); //Creo un header
+		rs0metaData.addColumnMetaData(new ResultSetHeaderColumn("o_array_benefits", 39, 255))-->; // Le meto los nombres de los headers que va a tener, (Nombre, tipoDeDato, Length)
+		rs0metaData.addColumnMetaData(new ResultSetHeaderColumn("o_array_errors", 39, 255));
+		rs0metaData.addColumnMetaData(new ResultSetHeaderColumn("o_e_error", 39, 255));
+		rs0metaData.addColumnMetaData(new ResultSetHeaderColumn("o_array_metadata", 39, 255));
+		IResultSetData rs0Data = new ResultSetData();   ---------------------------------------> // Creo un Data de resulset donde va a ir almacenada la fila 
+		IResultSetRow rs0row = new ResultSetRow();      --------------------------------------->//Creo la lista de filas 
+		rs0row.addRowData(1, new ResultSetRowColumnData(false, "")); -------------------------->//(NumDeFila, new columna("false: si va algun valor, true: si va null", ValorAsignado).
+		rs0row.addRowData(2, new ResultSetRowColumnData(false, ""));
+		rs0row.addRowData(3, new ResultSetRowColumnData(false, "false"));
+		rs0row.addRowData(4, new ResultSetRowColumnData(false, ""));
+		rs0Data.addRow(rs0row);----------------------------------------------------------------> // Almaceno en el Resultsetdata las rows creadeas
+		IResultSetBlock rs0 = new ResultSetBlock(rs0metaData, rs0Data); ----------------------->//Almaceno los headers y las filas dentro de un bloque (Header,DataColumns)
+		// RS1
+		IResultSetHeader rs1metaData = new ResultSetHeader();
+		rs1metaData.addColumnMetaData(new ResultSetHeaderColumn("NroBeneficio", 39, 255));
+		rs1metaData.addColumnMetaData(new ResultSetHeaderColumn("ApellidoYNombre", 39, 255));
+		IResultSetData rs1Data = new ResultSetData();
+		IResultSetRow rs1row = new ResultSetRow();
+		rs1row.addRowData(1, new ResultSetRowColumnData(false, "15040856080"));
+		rs1row.addRowData(2, new ResultSetRowColumnData(false, "BENEFICIARIO RH BANCO MACRO"));
+		rs1Data.addRow(rs1row);
+		IResultSetBlock rs1 = new ResultSetBlock(rs1metaData, rs1Data);
+		// RS2
+		IResultSetHeader rs2metaData = new ResultSetHeader();
+		rs2metaData.addColumnMetaData(new ResultSetHeaderColumn("o_c_error", 39, 255));
+		rs2metaData.addColumnMetaData(new ResultSetHeaderColumn("o_d_error", 39, 255));
+		IResultSetData rs2Data = new ResultSetData();
+		IResultSetRow rs2row = new ResultSetRow();
+		rs2row.addRowData(1, new ResultSetRowColumnData(true, null));
+		rs2row.addRowData(2, new ResultSetRowColumnData(true, null));
+		rs2Data.addRow(rs2row);
+		IResultSetBlock rs2 = new ResultSetBlock(rs2metaData, rs2Data);
+
+
+		// RS3
+		IResultSetHeader rs3metaData = new ResultSetHeader();
+		rs3metaData.addColumnMetaData(new ResultSetHeaderColumn("o_c_metadata", 39, 255));
+		rs3metaData.addColumnMetaData(new ResultSetHeaderColumn("o_d_metadata", 39, 255));
+		IResultSetData rs3Data = new ResultSetData();
+		IResultSetRow rs3row = new ResultSetRow();
+		IResultSetRow rs4row = new ResultSetRow();
+		rs3row.addRowData(1, new ResultSetRowColumnData(false, "NroOperacion"));
+		rs3row.addRowData(2, new ResultSetRowColumnData(false, "258857"));
+		rs3Data.addRow(rs3row);
+		rs4row.addRowData(1, new ResultSetRowColumnData(false, "Fecha"));
+		rs4row.addRowData(2, new ResultSetRowColumnData(false, "10/10/2017 04:41:31 p.m."));
+		rs3Data.addRow(rs4row);
+		IResultSetBlock rs3 = new ResultSetBlock(rs3metaData, rs3Data);
+
+		a.add(rs0);---------------------------------------------------------------------------->// Agrego los bloques dentro de la lista de bloques (Bloque)
+		a.add(rs1);
+		a.add(rs2);
+		a.add(rs3);
+
+		logger.logDebug("Response que deberia pasar: " + a);
+
+		return a;
+	}
+	
+	
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		 logger.logDebug("--------------------EXTRA------------------------");
+		 CustomResponse aux = new CustomResponse();
+		 String numericFields = Configuration.getProperty("NumericField", "");
+		 String[] token = numericFields.split(",");
+		
+		 ArrayList<String> tokenList = new ArrayList<String>();
+		
+		 // lleno el ArrayList con los tokens
+		 for (int i = 0; i < token.length; i++) {
+		 tokenList.add(token[i]);
+		 }
+		
+		 aux = finalResponse;
+		
+		 int cantidadDeResultsets = finalResponse.getResultsetList().size();
+		
+		 // j = posicion del resultset
+		 for (int j = 0; j < cantidadDeResultsets; j++) {
+		 IResultSetData dataRow = new ResultSetData();
+		 IResultSetHeader metaDataRow = finalResponse.getResultsetList().get(j).getMetaData();
+		 int cantidadDeRows = finalResponse.getResultsetList().get(j).getData().getRows().size();
+		
+		 logger.logDebug("Nro de resultset " + j);
+		
+		 logger.logDebug("METADATA " + finalResponse.getResultsetList().get(j).getMetaData());
+		 logger.logDebug(finalResponse.getResultsetList().get(j));
+		
+		 logger.logDebug("CantidadDeRows" + cantidadDeRows);
+		 // i = posicion del Row
+		 for (int i = 1; i <= cantidadDeRows; i++) {
+		 IResultSetRow row = new ResultSetRow();
+		 logger.logDebug("Nro de row " + i);
+		 int cantidadDeCampos = finalResponse.getResultsetList().get(j).getData().getRow(i).getColumns().size();
+		 logger.logDebug("cantidadDeCampos " + cantidadDeCampos);
+		 // k = posicion del campo
+		 for (int k = 1; k <= cantidadDeCampos; k++) {
+		 logger.logDebug("Campo " + k + ": " + finalResponse.getResultsetList().get(j).getData().getRow(i).getColumns().get(k - 1));
+		 logger.logDebug("METADATA name: " + finalResponse.getResultsetList().get(j).getMetaData().getColumnMetaData(k).getName());
+		 boolean existOnPropertiesFile = tokenList
+		 .contains(finalResponse.getResultsetList().get(j).getMetaData().getColumnMetaData(k).getName().toString());
+		 logger.logDebug("CAMPO: " + finalResponse.getResultsetList().get(j).getData().getRow(i).getColumns().get(k - 1).toString());
+		 boolean isNull = finalResponse.getResultsetList().get(j).getData().getRow(i).getColumns().get(k - 1).toString()
+		 .equals("<cd></cd>");
+		 logger.logDebug("es nulo? " + isNull);
+		 logger.logDebug("está en el property? " + existOnPropertiesFile);
+		 if (existOnPropertiesFile && isNull) {
+		 row.addRowData(k, new ResultSetRowColumnData(false, "null"));
+		 } else {
+		 logger.logDebug("Entra por no validar");
+		 row.addRowData(k,
+		 (IResultSetRowColumnData) finalResponse.getResultsetList().get(j).getData().getRow(i).getColumns().get(k - 1));
+		 logger.logDebug("Agregó el campo al row");
+		 }
+		
+		 }
+		 dataRow.addRow(row);
+		 }
+		
+		 IResultSetBlock rb = new ResultSetBlock(metaDataRow, dataRow);
+		 logger.logDebug("rb = " + rb);
+		
+		 aux.getResultsetList().remove(j);
+		 aux.getResultsetList().add(j, rb);
+		
+		 }
+		 logger.logDebug("aux" + aux);
+		
+		 logger.logDebug("--------------------EXTRA------------------------"); // ---desps se borra----
+		 
+		 
+		 
+		 //DUMMIE PARA OUTPUTS
+		 private CustomResponse executeDummie() {
+		boolean validation = false;
+		logger.logDebug("--------------------EXTRA------------------------");
+		CustomResponse aux = new CustomResponse();
+
+		OutputData o_e_ejec = new OutputData("o_e_ejecucion", 39, 10, "null");
+		OutputData o_n_calificacion = new OutputData("o_n_calificacion", 56, 10, "null");
+		OutputData o_d_mensaje = new OutputData("o_d_mensaje", 39, 10, "null");
+		// o_d_mensaje.setName("o_d_mensaje");
+		// o_d_mensaje.setLength(10);
+		// o_d_mensaje.setType(39);
+		aux.getOutputList().add(o_e_ejec);
+		aux.getOutputList().add(o_n_calificacion);
+		aux.getOutputList().add(o_d_mensaje);
+		logger.logDebug("Hago validacion de si el outputList es nulo");
+		if (aux.getOutputList() != null) {
+			logger.logDebug("size:" + aux.getOutputList().size());
+			logger.logDebug("Entra porque no es nulo");
+			for (int i = 0; i < aux.getOutputList().size(); i++) {
+				logger.logDebug("NameDelOutput:" + aux.getOutputList().get(i).getName());
+				logger.logDebug("value: " + aux.getOutputList().get(i).getValue());
+				logger.logDebug("value: " + aux.getOutputList().get(i).getValue() == null);
+				logger.logDebug("Validacion 1: " + ("null").equals(aux.getOutputList().get(i).getValue()));
+				if (!aux.getOutputList().get(i).getValue().equals("null")) {
+					validation = true;
+				}
+			}
+
+			if (validation == false) {
+				logger.logDebug("Seteando el mensaje de error");
+				aux.getMessages().add(new MessageBlock(999, "El servicio está rancio"));
+			}
+
+		}
+
+		logger.logDebug("aux outputList  " + aux.getOutputList());
+		logger.logDebug("aux valor0  " + aux.getOutputList().get(0).getValue());
+
+		return aux;
+
+	}
+
+--------------------------------------------------------------------------------
+Para lo que son resulsets, fijarse orquestador de CAC
+-No cometer el error estupido de preguntar en que ROW está, hacer el next primero y eso nos da la pauta si trajo o no datos.
+-Se debe crear un statement, resulset
+-rS0 = statement0.executeQuery(query); //Ejecuta la query y guarda el resulset en la variable de tipo Resulset
+-if (rS0.next()) {} //Puedo guardar los resultados en el responseTO o donde quiera guardarlo, esta validación sirve para saber si todavía tiene datos
+
+
+
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//HACER QUE UN SERVICIO FUNCIONE CON 7x24
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+	public static final String DBMSP1 = "dbmsp1";
+	public static final String DBMSP4 = "dbmsp4";
+	public static final String DBMSLOCAL = "dbmslocal";
+
+	String mainServerStatus = spParamResponse.getResultsetList().get(0).getData().getRow(1).getRowData(4).getValue().trim();
+			if ("ON".equalsIgnoreCase(mainServerStatus))
+				dbms = configurator.get(Constant.DBMSP1);//Central 1
+			else
+				dbms = configurator.get(Constant.DBMSP4);//Central 2
+			
+			
+	/**
+	 * Ejecuta el sp:cobis..sp_parametro para verificar si la BD P1 está en
+	 * línea (ON) o fuera de línea (OFF).
+	 * 
+	 * @param anOriginalRequest
+	 * @return la respuesta del sp.
+	 * @throws Exception
+	 */
+	private CustomResponse executeSPParam(IProcedureRequest anOriginalRequest) throws Exception {
+		IProcedureRequest request = initProcedureRequest();
+		request.addInputParam(Param.T_TRN, ICTSTypes.SQLINTN, "1579");
+		request.addInputParam(Param.I_OPERACION, ICTSTypes.SQLCHAR, "Q");
+		request.addInputParam(Param.I_NEMONICO, ICTSTypes.SQLVARCHAR, "CSEMBV");
+		request.addInputParam(Param.I_PRODUCTO, ICTSTypes.SQLVARCHAR, "BVI");
+		return runSp(new SpData(request, Constant.COBIS_DB, Constant.SP_PARAMETRO, "1579", configurator.get(Constant.DBMSLOCAL)));
+	}
+	
+	
+
+	
