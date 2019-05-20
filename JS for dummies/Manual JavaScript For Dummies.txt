@@ -1,0 +1,127 @@
+//JAVASCRIPT FOR DUMMIES
+
+/*Basics of javascript
+
+-Los strings pueden declararse "entre comillas dobles" o 'comillas simples' (Es preferible comillas simples)
+-Existe el tipo de dato boolean (true o false)
+-Existe el null
+-undefined: representa la ausencia de valor pero tiene más usos que el null
+
+*/
+console.log(5); //Muestro por consola el numero 5
+console.log("hola mundo");
+
+/* OPERACIONES ARITMETICAS
+Add: +
+Subtract: -
+Multiply: *
+Divide: /
+Remainder: %  
+*/
+
+console.log(11%3); //Va a logear el resto de 11 / 3, en este caso 2
+console.log('hola ' + 'mundo'); //También se pueden sumar cadena de caracteres.
+
+
+/*PROPERTIES
+String.length = indica la longitud de la cadena 
+String.toUpperCase() = cambia la cadena a mayusculas
+String.startsWith('Letra') = devuelve true o false
+CadenaConEspacios.trim() = le saca los espacios en blanco
+*/
+console.log("una cadena de caracteres".length);
+console.log('Codecademy'.toUpperCase());
+console.log('    Remove whitespace   '.trim());
+
+/*
+MATH PROPERTIES en https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math
+
+Math.ceil(numero) = Redondea el número al entero para arriba.
+Math.round(numero) = Redondea al numero entero más cercano.
+Math.floor(numero) :Redondea un numero con decimales al entero más bajo 
+Math.random() = devuelve un numero random del 0 al 1
+*/
+console.log(Math.random() * 50);
+console.log(Math.floor(50.8)); //Devuelve 50
+
+/*
+NUMBER PROPERTIES en https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number
+
+Number.isInteger(numero) = Devuelve true o falsed
+*/
+
+/*VARIABLES
+-Las variables pueden cambiar de tipo de dato, no se les asigna un tipo cuando se castean.
+
+var nombre = 18 o 'nueve'; (VARIABLE LOCAL O GLOBAL)
+let apellido; (Si no se le asigna un valor lo declara como undefined) (LET es una variable que se limita al bloque solamente) 
+const edad; (CONSTANTE QUE NO PUEDE SER MODIFICADA LUEGO);
+*/
+
+let levelUp = 10;
+let powerLevel = 9001;
+let multiplyMe = 32;
+let quarterMe = 1152;
+typeof quarterMe; //Devuelve number
+
+// Use the mathematical assignments in the space below:
+
+levelUp += 5;
+powerLevel -= 100;
+multiplyMe *= 11;
+quarterMe /= 4;
+quarterMe --;
+
+console.log('The value of levelUp: ', levelUp); //LOGEAR VARIABLES Y CADENA DE CARACTERES
+console.log('The value of levelUp: '+ levelUp); //LOGEAR VARIABLES Y CADENA DE CARACTERES
+let myName = "Kenji";
+let myCity = "Buenos Aires";
+console.log(`My name is ${myName}. My favorite city is ${myCity}`); //Interpolar variables en la sentencia
+
+
+/*OPERADORES LOGICOS
+if(validacion){}else{}
+
+
+s than: <
+Greater than: >
+Less than or equal to: <=
+Greater than or equal to: >=
+Is equal to: ===
+Is NOT equal to: !==
+
+the and operator (&&)
+the or operator (||)
+the not operator, otherwise known as the bang operator (!)
+*/
+
+let tool = '';
+// Use short circuit evaluation to assign  writingUtensil variable below:
+let writingUtensil = tool || 'pen'; //Si tool es verdadero le setea el valor de tool sino le quema el valor 'pen'
+
+//OPERADORES TERNARIOS
+
+/*if (favoritePhrase === 'Love That!') {
+  console.log('I love that!');
+} else {
+  console.log("I don't love that!");
+}*/
+favoritePhrase === 'Love That!' ? console.log('I love that!') : console.log("I don't love that!");
+
+//SWITCH CASE
+let athleteFinalPosition = 'first place';
+switch (athleteFinalPosition){
+  case 'first place':
+    console.log('You get the gold medal!');
+    break;
+  case 'second place':
+    console.log('You get the silver medal!');
+    break;
+  case 'third place':
+    console.log('You get the bronze medal!');
+  	break;
+  default:
+    console.log('No medal awarded.');
+    break;
+}
+
