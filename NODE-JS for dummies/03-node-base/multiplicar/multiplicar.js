@@ -1,4 +1,5 @@
 const fs = require("fs");
+const colors = require('colors');
 
 let crearArchivo = (base, limite, flag) => {
     return new Promise((resolve, reject) => {
@@ -14,6 +15,7 @@ let crearArchivo = (base, limite, flag) => {
             }
 
             if(flag === 'listar'){
+                console.log(`===TABLA DE BASE ${base}===`.green);
                 resolve(tabla); 
                 return;
             }
