@@ -1,0 +1,15 @@
+{
+  "name": "03-node-base",
+  "version": "1.0.0",
+  "description": "Esta es una aplicacion de linea de comando",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ArakakiAriel/Manuales-for-dummies/tree/master/NODE-JS%20for%20dummies"
+  },
+  "author": "Ariel Kenji Arakaki",
+  "license": "ISC"
+}
