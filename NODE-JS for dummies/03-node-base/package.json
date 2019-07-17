@@ -11,5 +11,8 @@
     "url": "https://github.com/ArakakiAriel/Manuales-for-dummies/tree/master/NODE-JS%20for%20dummies"
   },
   "author": "Ariel Kenji Arakaki",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "yargs": "^13.3.0"
+  }
 }
