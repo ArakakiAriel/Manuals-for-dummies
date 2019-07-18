@@ -17,16 +17,16 @@
 
 -----------------------------------------------------------------------------
 
-- node app crear -d "Pasear al perro" 
+- <b>node app crear -d "Pasear al perro" </b>
 ###### Descripcion: con esta sentencia se crearan las tareas que luego se alojan en la base de datos (Archivo JSON creado dentro de la ruta /database)
 
-- node app listar
+- <b>node app listar</b>
 ###### Descripcion: Lista en la consola todas las tareas que existen en la base de datos
 
-- node app actualizar -d "Pasear al perro" -c true
+- <b>node app actualizar -d "Pasear al perro" -c true</b>
 ###### Descripcion: Actualiza la tarea enviada
 
-- node app borrar
+- <b>node app borrar</b>
 ###### Descripcion: Borra todas las tareas completadas de la base de datos
 
 -----------------------------------------------------------------------------
