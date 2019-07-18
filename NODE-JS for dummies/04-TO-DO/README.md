@@ -5,11 +5,9 @@
 * Actualizar tareas
 * Borrar tareas completadas
 
--Se utilizará lo aprendido de YARGS en la clase anterior
-
 -----------------------------------------------------------------------------
 
-##Temas vistos:
+## Temas vistos:
 
 * Creacion de una base de datos con formato JSON
 * Manipulacion del formato JSON 
@@ -19,16 +17,16 @@
 
 -----------------------------------------------------------------------------
 
-node app crear -d "Pasear al perro" 
+- node app crear -d "Pasear al perro" 
 ###### Descripcion: con esta sentencia se crearan las tareas que luego se alojan en la base de datos (Archivo JSON creado dentro de la ruta /database)
 
-node app listar
+- node app listar
 ###### Descripcion: Lista en la consola todas las tareas que existen en la base de datos
 
-node app actualizar -d "Pasear al perro" -c true
+- node app actualizar -d "Pasear al perro" -c true
 ###### Descripcion: Actualiza la tarea enviada
 
-node app borrar
+- node app borrar
 ###### Descripcion: Borra todas las tareas completadas de la base de datos
 
 -----------------------------------------------------------------------------
