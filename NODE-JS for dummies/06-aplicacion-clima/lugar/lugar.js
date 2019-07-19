@@ -13,16 +13,15 @@ const instance = axios.create({
 
 const resp = await instance.get();
 let resultados = resp.data.Results;
-
 //Si no hay resultado para la consulta se muestra un error
 if(resultados.length === 0){
-    throw new Error('No hay resultado para', lugar);
+    throw new Error(`No hay resultado para ${lugar}`);
 }
 
 //Se agarra al primer elemento del array de respuesta (Primer match de consulta)
 const resultado = resultados[0];
     return {
-        lugar: resultado.name,
+        name: resultado.name,
         lat: resultado.lat,
         lon: resultado.lon
     }

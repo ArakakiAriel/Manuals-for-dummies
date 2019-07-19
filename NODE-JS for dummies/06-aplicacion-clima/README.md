@@ -1,27 +1,26 @@
-# Curso en el que se aprenden conceptos claves creando una aplicacion que pueda listar las cosas por hacer que uno le pase por linea de comandos
+# Curso en el que se aprende como interactuar con una API externa desde nuestro código
 
-* Crear tareas por hacer
-* Listar las tareas creadas
-* Actualizar tareas
-* Borrar tareas completadas
-
------------------------------------------------------------------------------
 
 ## Temas vistos:
 
 * Consumo de API's
 * Uso de POSTMAN
 * Llamadas HTTP hacia servidores externos
-* Paquete request
-* Paquete Axios
+* Paquete request (teoria)
+* Paquete Axios (uso)
 * Uso de servicios para obtener la direccion por nombre
 * Uso de OpenWeather para obtener el clima
+* Refuerzo del tema async await
 * Respaldos locales y remotos 
 
 -----------------------------------------------------------------------------
 
-<b>node app -d Madrid España </b>
-###### Descripcion: 
+```
+node app -d 'Madrid'
+La temperatura de Madrid, Spain es de 34.74°
+
+```
+###### Descripcion: Se ejecuta la app enviando alguna ciudad y obtiene como respuesta la temperatura actual de ella.
 
 -----------------------------------------------------------------------------
 
@@ -42,8 +41,9 @@ HEADERS
 - Axios trabaja en base a promesas (En esta oportunidad usaremos axios ya que nos deja conbinar las promesas con el async await)
 - Request trabaja en base a callbacks
 
-- npm i axios
-
+```
+ npm i axios
+```
 #### Para realizar una consulta a la API desde nuestro codigo se debe declarar una instancia así
 ```
 const instance = axios.create({
