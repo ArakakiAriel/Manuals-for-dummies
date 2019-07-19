@@ -31,7 +31,7 @@ Es un API para obtener las coordenadas de una ciudad en base al nombre que se le
 Para poder probar el API de City Geolocation nos iremos al postman y pondremos lo siguiente:
 
 endpoint: https://devru-latitude-longitude-find-v1.p.rapidapi.com/latlon.php?location=New+York
-<u>HEADERS</u>
+HEADERS
 - X-RapidAPI-Key c2d663da1emsha08e003b2a32299p190766jsn5fff7cf716c8
 
 
@@ -45,11 +45,15 @@ endpoint: https://devru-latitude-longitude-find-v1.p.rapidapi.com/latlon.php?loc
 - npm i axios
 
 #### Para realizar una consulta a la API desde nuestro codigo se debe declarar una instancia así
-> const instance = axios.create({
->    baseURL: 'URL QUE SE PUEDE PROBAR DESDE POSTMAN',
->    timeout: 10000,
->    headers: {'X-RapidAPI-Key': 'c2d663da1emsha08e003b2a32299p190766jsn5fff7cf716c8'} (Headers que tienen que ir en la consulta)
-> });
+```
+const instance = axios.create({
+   baseURL: 'URL QUE SE PUEDE PROBAR DESDE POSTMAN',
+   timeout: 10000, 
+   headers: {'X-RapidAPI-Key': 'c2d663da1emsha08e003b2a32299p190766jsn5fff7cf716c8'} //(Headers que tienen que ir en la consulta)
+});
+```
 #### Luego para capturar la respuesta
-> const resp = await instance.get();
+```
+const resp = await instance.get();
+```
 -----------------------------------------------------------------------------
