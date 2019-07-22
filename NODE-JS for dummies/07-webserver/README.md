@@ -87,5 +87,11 @@ hbs.registerHelper('getAnio', () => {
 1. Para poder logearse con heroku
 ```heroku login```
 2. Nos paramos sobre el branch y ponemos:
-```heroku git:remote -a kenjiman-webpage```
+```
+heroku git:remote -a kenjiman-webpage
+git push heroku master
+```
+###### Esto sirve para poder levantar los cambios en el servidor de heroku
+3. Podemos abrirlo desde el link que nos aparece en consola (En mi caso https://kenjiman-webpage.herokuapp.com/) o ponemos por linea de comando:
+```heroku open```
 
