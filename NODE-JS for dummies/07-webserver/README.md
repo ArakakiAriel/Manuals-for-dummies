@@ -84,3 +84,8 @@ hbs.registerHelper('getAnio', () => {
 ## [Heroku](https://dashboard.heroku.com/)
 <p>Servicio en la nube que permite desplegar aplicaciones php, ruby, node, etc.</p>
 
+1. Para poder logearse con heroku
+```heroku login```
+2. Nos paramos sobre el branch y ponemos:
+```heroku git:remote -a kenjiman-webpage```
+
