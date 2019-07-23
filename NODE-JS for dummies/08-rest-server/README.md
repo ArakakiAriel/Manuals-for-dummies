@@ -13,6 +13,7 @@
 * Códigos de error en Express
 * Archivos para la configuracion global
 * Tips importantes en Postman
+
 (Sección09)
 - Definir los alcances de nuestro RESTServer
 - CRUD
