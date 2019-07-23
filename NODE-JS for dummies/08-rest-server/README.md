@@ -22,7 +22,7 @@ nodemon server -e js,hbs,html,css
 
 -----------------------------------------------------------------------------
 
-## [MongoDB](https://www.mongodb.com/download-center/community)
+## [MongoDB] ([LINK](https://www.mongodb.com/download-center/community))
 <b>Es una base de datos No Relacional </b>
 
 #### [Instalacion](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
@@ -32,8 +32,8 @@ nodemon server -e js,hbs,html,css
     
 -----------------------------------------------------------------------------
 
-## [Robo3T](https://robomongo.org/download)
-<b>Es un manejador de la base de datos que nos va a permitir crear todo de forma visual</b>
+## [Robo3T] ([LINK](https://robomongo.org/download))
+<b>Es un manejador de la base de datos MongoDB que nos va a permitir crear todo de forma visual</b>
 
 ##### Instalacion: Para poder instalarlo, vamos a la pagina, nos descargamos el .gz y lo extraemos. Una vez hecho esto, vamos a la carpeta bin y ejecutamos robo3t.
 
@@ -76,7 +76,7 @@ hbs.registerHelper('getAnio', () => {
 - Se pueden utilizar en las clases .hbs para lo que uno quiera hacer
 
 -----------------------------------------------------------------------------
-## [Heroku](https://dashboard.heroku.com/)
+## [Heroku] ([LINK](https://dashboard.heroku.com/))
 <p>Servicio en la nube que permite desplegar aplicaciones php, ruby, node, etc.</p>
 
 1. Para poder logearse con heroku
