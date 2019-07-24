@@ -130,15 +130,27 @@ nodemon server -e js,hbs,html,css
 <b>Es un paquete nos ayudará a definir los errores de validaciones utilizando mongoose</b>
 - Se utiliza en la clase server/models/user.js 
 
-#### Instalacion: ```npm i mongoose-unique-validator --save```
+#### Instalacion: ```npm install mongoose-unique-validator --save```
 
 -----------------------------------------------------------------------------
 ## [B-crypt] ([LINK](https://www.npmjs.com/package/bcrypt))
 <b>Es un paquete para poder encriptar y desencriptar</b>
 - Se utiliza en la clase server/routes/user.js 
 
-#### Instalacion: ```npm i bcrypt --save ```
+#### Instalacion: ```npm install bcrypt --save ```
 
+-----------------------------------------------------------------------------
+## [UNDERSCORE] ([LINK](https://underscorejs.org))
+<b>Es una librería para poder expandir javascript</b>
+- Se utiliza en la clase server/routes/user.js 
+
+#### Instalacion: ```npm install underscore --save ```
+
+-----------------------------------------------------------------------------
+## [MONGODB ATLAS] ([LINK](https://www.mongodb.com/cloud/atlas))
+<b>Es una base de datos online que se puede registrar gratis con 500mb de almacenamiento</b>
+
+(Falta completar)
 
 
 
