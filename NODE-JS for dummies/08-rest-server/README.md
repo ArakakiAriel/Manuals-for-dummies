@@ -9,7 +9,7 @@
   b. PUT
   c. POST
   d. DELETE
-* Aprender sobre códigos de error HTTP (info en  pdf/http-response-codes.pdf)
+* Aprender sobre códigos de error HTTP (info en  extras/http-response-codes.pdf)
 * Códigos de error en Express
 * Archivos para la configuracion global
 * Tips importantes en Postman
@@ -28,9 +28,18 @@
     a. Eliminado físico de la base de datos
     b. Eliminación por estado en un campo de la colección
 
+(Seccion10)
+- Introducción a los tokens
+- JWT
+- Login personalizado
+- Protección de rutas vía token
+- Leer payload del token sin la firma
+- Tips importantes para POSTMan
+- Despliegues en Heroku para pruebas en producción
+- Uso de Middleware
 -----------------------------------------------------------------------------
 
-```
+```git
 nodemon server -e js,hbs,html,css
 ```
 ###### Descripcion: Se levanta un servidor http en el localhost:8080 y al utilizar el -e se le indica luego que tipo de archivos necesitamos que quede escuchando por cambios y actualizar
@@ -41,6 +50,10 @@ nodemon server -e js,hbs,html,css
 <b>Es una base de datos No Relacional </b>
 
 #### Instalacion:[https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
+
+
+
+- Así se levanta localmente: ```mongod --dbpath \MongoDB/database```
 
 -----------------------------------------------------------------------------
 
@@ -62,12 +75,12 @@ nodemon server -e js,hbs,html,css
 <p>Los parciales simplifican la repeticion de codigo al crear archivos .hbs</p>
 
 1. En nuestro server.js escribimos para registrar los parciales
-```
+```js
 hbs.registerPartials(__dirname + '/views/partials');
 ```
 2. Luego creamos una carpeta contenedora /views/partials en donde vamos a crear nuestros archivos hbs
 3. Para llamar a los hbs que van a ser nuestras páginas (que se encuentran dentro de /views) se las llaman de la siguiente manera dentro de server.js
-```
+```js
 app.get('/', (req, res) => {
     res.render('home', {
         nombre: "Kenji",
@@ -80,7 +93,7 @@ app.get('/', (req, res) => {
 <p>Los helpers son funciones del HBS que se disparan cuando el template lo requiera</p>
 
 - Se declaran las funciones en una clase helpers.js de la siguiente manera
-```
+```js
 hbs.registerHelper('getAnio', () => {
     return new Date().getFullYear();
 });
@@ -93,14 +106,27 @@ hbs.registerHelper('getAnio', () => {
 
 1. Para poder logearse con heroku
 ```heroku login```
+
 2. Nos paramos sobre el branch y ponemos:
-```
+```git
 heroku git:remote -a kenjiman-webpage
 git push heroku master
 ```
 ###### Esto sirve para poder levantar los cambios en el servidor de heroku
+
 3. Podemos abrirlo desde el link que nos aparece en consola (En mi caso https://kenjiman-webpage.herokuapp.com/) o ponemos por linea de comando:
 ```heroku open```
+
+### Siempre sirve:
+
+- En caso de que necesitemos declarar variables de configuraciones en heroku podemos poner lo siguiente:
+```git
+heroku config:set NOMBRE_PARAMETRO="Valor-del-parametro"
+```
+- En caso de que querramos ver las variables de configuraciones creadas utilizamos el siguiente código:
+```git
+heroku config
+```
 
 ----------------------------------------------------
 ----------------------------------------------------
@@ -147,12 +173,58 @@ git push heroku master
 (Falta completar)
 
 
+----------------------------------------------------
+----------------------------------------------------
+
+# Sección10
+-----------------------------------------------------------------------------
+
+- <b> Se puede importar en el postman el archivo Udemy.postman_collection.json en la carpeta extras </b>
+
+## Tokens
+- Un token es un elemento virtual o físico que se utiliza para poder logearse o entrar en una página o lugar físico
+
+-----------------------------------------------------------------------------
+
+## [JWT (Json Web Token)] ([LINK](https://www.npmjs.com/package/jsonwebtoken))
+<b>Librería para generar los tokens</b>
+- Se utiliza en la clase server/routes/login.js 
+
+#### Instalacion: ```npm i jsonwebtoken --save ```
 
 
 
+-----------------------------------------------
+-----------------------------------------------
+-----------------------------------------------
+# APARTADO I: Como desplegar un API en HEROKU
 
+1. New -> Create New App // Agregamos el nombre, la región más cercana.
+2. Commitear y pushear nuestro código a un repo de github.
+3. Una vez creado el repo de heroku, nos dirigimos en nuestra consola a la raiz de nuestro repo que vamos a desplegar en heroku y ponemos lo siguiente:
+```heroku git:clone -a rest-server-heroku``` (Cambiando rest-server-heroku por el nombre que le hayan asignado)
+4. Luego pusheamos el código al repo de heroku:
+```git push heroku master```
+5. Listo. Tenemos nuestro servicio en Heroku levantado!
 
+# APARTADO II: Como crear nuestra base en MongoDB Atlas
 
-
-
+1. Nos creamos la cuenta en la pagina de [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
+2. Elegimos AWS como cloud y si quieren le cambian el nombre al cluster 
+   - Una vez que le demos aceptar va a tardar aproximadamente unos 5min en generar el cluster.
+3. Mientras se genera el cluster, vamos a Security -> Network Access y le damos al boton + ADD IP ADRESS
+   - Le damos la opcion de allow access from anywhere y aceptamos.
+4. Luego vamos a Security -> Database Access y le damos al boton + ADD NEW USER
+   - Elegimos un nombre de usuario
+   - Autogeneramos la password
+   - Le damos Atlas Admin privileges
+   - Guardamos estos datos en un archivo de texto para su posterior uso
+5. Para conectarnos al cluster vamos a Atlas -> Cluster -> Connect(Al cluster creado previamente) -> Connect with MongoDB Compass
+   - Nos copiamos el string que nos de de conexion y lo agregamos al archivo de texto donde guardamos el usuario y pass
+   -En donde diga >password< cambiamos con la password que autogeneramos.
+6. Es necesario tener MongoDB Compass instalado en sus maquinas (Fijarse algun instructivo de como instalarlo)
+   - Una vez abierto el MongoDB Compass vamos a New Connection y completamos:
+     - Hostname: Sacamos del string de conexiones desde el @ hasta el .net (EJ: cluster0-xvaow.mongodb.net)
+     - Si el string de conexiones tiene un +srv prendemos la opcion de SRV Record, caso contrario dejamos el puerto 27017 por defecto
+     - Authentication: Username/Password (Indicando el username y pass que guardamos previamente)
 

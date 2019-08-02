@@ -8,11 +8,14 @@ const app = express();
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false })); //Middleware cuando es app.use
+
 // parse application/json
-app.use(bodyParser.json())
-//De esta forma utilizamos el controlador de GET POST PUT DELETE
-app.use(require('./routes/user'));
-mongoose.connect('mongodb://localhost:27017/cuentas',
+app.use(bodyParser.json());
+
+//Configuracion globar de rutas
+app.use(require('./routes/index'));
+
+mongoose.connect(process.env.URLDB,
         {useNewUrlParser:true, useCreateIndex:true}, //Configuraciones a la hora de hacer la conexion a mongo
         (err, res) => {
     if(err) throw err;
@@ -20,6 +23,9 @@ mongoose.connect('mongodb://localhost:27017/cuentas',
     console.log('Base de datos: ' + 'ONLINE'.green);
 
 });
+mongoose.set("useFindAndModify", false);
+mongoose.set("useCreateIndex", true);
+
 
 app.listen(process.env.PORT, () => {
     console.log("Escuchando en el puerto", process.env.PORT);
