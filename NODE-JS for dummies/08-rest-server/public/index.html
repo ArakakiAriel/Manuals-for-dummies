@@ -1,0 +1,42 @@
+<!-- Para crear la cascara ponemos "!" y clickeamos el tab -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Llevo mis cuentas - Google Sign In</title>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="843246965520-2q5k0dhjmc0o59jvte08rqvdcn68jdov.apps.googleusercontent.com">
+</head>
+<body>
+    <image id="pic"> </div>
+    <div id="name"> </div>
+    <div id="email"> </div>
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>    
+    <script>
+        function onSignIn(googleUser) {
+            var profile = googleUser.getBasicProfile();
+            var email = `Email: ${profile.getEmail()}`;
+            var name = `Name: ${profile.getName()}`;
+            var pic = profile.getImageUrl();
+            console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+            console.log(name);
+            console.log('Image URL: ' + pic);
+            console.log(email); // This is null if the 'email' scope is not present.
+            document.getElementById("email").innerHTML = email;
+            document.getElementById("name").innerHTML = name;
+            document.getElementById("pic").src = pic;
+        }
+    </script>
+
+<a href="#" onclick="signOut();">Sign out</a>
+<script>
+  function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+  }
+</script>
+</body>
+</html>
