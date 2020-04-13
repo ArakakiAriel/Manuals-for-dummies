@@ -20,7 +20,7 @@ mongoose.connect(process.env.URLDB,
         (err, res) => {
     if(err) throw err;
 
-    console.log('Base de datos: ' + 'ONLINE'.green);
+    console.log('Database: ' + 'ONLINE'.green);
 
 });
 mongoose.set("useFindAndModify", false);
@@ -28,5 +28,5 @@ mongoose.set("useCreateIndex", true);
 
 
 app.listen(process.env.PORT, () => {
-    console.log("Escuchando en el puerto", process.env.PORT);
+    console.log("Listening on port ", process.env.PORT);
 });

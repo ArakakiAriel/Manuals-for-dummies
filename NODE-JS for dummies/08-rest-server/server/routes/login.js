@@ -1,6 +1,7 @@
 const express = require('express');
 const bcrypt = require('bcrypt'); //Libreria de encriptado
 const jwt = require('jsonwebtoken');
+const messages = require('../constants/messages')
 
 const app = express();
 const User = require('../models/user'); //Obtener info del usuario
@@ -25,8 +26,7 @@ app.post('/login', (req, res) => {
                 return res.status(400).json({
                     ok:false,
                     err: {
-                        message: `(Usuario) o contraseña no válidos`
-                    }
+                        message: messages.FAIL_LOGIN                 }
                 });                
             }
 
@@ -34,19 +34,21 @@ app.post('/login', (req, res) => {
             if(!bcrypt.compareSync(body.password, userDB.password)){
                 return res.status(400).json({
                     ok:false,
-                    err: `Usuario o (contraseña) no válido`
+                    err: messages.FAIL_LOGIN
                 });
             }
 
             //De esta forma generamos el token
             let token = jwt.sign({
                 user: userDB
-
             }, process.env.SEED, {expiresIn: process.env.CADUCATE_TOKEN});
             
+            let user_id = userDB._id;
+            res.set('user-id', user_id); //Agrega en los headers de la respuesta el user-id de mongo
+
             res.json({ //Mando la respuesta como json
                 ok: true,
-                message: `Bienvenido ${body.user}!`,
+                message: `Welcome ${body.user}!`,
                 token
             })           
         })
