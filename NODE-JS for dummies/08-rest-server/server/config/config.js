@@ -23,6 +23,11 @@ process.env.CADUCATE_TOKEN = 60 * 60 * 1000;
 process.env.SEED = process.env.SEED || 'seed-for-making-token';
 
 
+//=========================
+//  Google Client ID
+//=========================
+process.env.CLIENT_ID = process.env.CLIENT_ID || '843246965520-2q5k0dhjmc0o59jvte08rqvdcn68jdov.apps.googleusercontent.com';
+
 //===============
 //   DataBase
 // Acá vamos a encontrar como configurar nuestra base de datos creada en MongoDB Atlas para poder almacenar allí la información
