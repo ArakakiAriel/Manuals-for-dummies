@@ -37,6 +37,16 @@
 - Tips importantes para POSTMan
 - Despliegues en Heroku para pruebas en producción
 - Uso de Middleware
+
+(Seccion11)
+- Generar API Key de Google
+- Generar API Secret
+- Usar librerías de Google para la validación de tokens
+- Tips importantes en PostMan
+- Despliegues a Heroku
+- Uso del Google SignIn en el Front-End
+- Crear usuarios personalizados en base a respuestas de Google
+
 -----------------------------------------------------------------------------
 
 ```git
@@ -227,4 +237,31 @@ heroku config
      - Hostname: Sacamos del string de conexiones desde el @ hasta el .net (EJ: cluster0-xvaow.mongodb.net)
      - Si el string de conexiones tiene un +srv prendemos la opcion de SRV Record, caso contrario dejamos el puerto 27017 por defecto
      - Authentication: Username/Password (Indicando el username y pass que guardamos previamente)
+
+
+----------------------------------------------------
+----------------------------------------------------
+
+
+# Sección11
+-----------------------------------------------------------------------------
+
+- <b> Se puede importar en el postman el archivo Udemy.postman_collection.json en la carpeta extras </b>
+
+## [Google Sign-In] ([LINK](https://developers.google.com/identity/sign-in/web/sign-in))
+- Se puede realizar un sign-in con una cuenta de Google para luego validarla con un token. 
+- Para poder conectarnos con el API de Google, deberemos tener [credenciales] (https://console.developers.google.com/apis/credentials?authuser=0&project=sign-in-dev-1564749183373)
+
+### Creación de credenciales ([LINK] (https://console.developers.google.com/apis/credentials?authuser=0&project=sign-in-dev-1564749183373))
+- En el link dado, pulsaremos el boton <b>(+ CREAR CREDENCIALES)</b>
+- Elegir <b>ID de cliente OAuth</b>
+- Para este ejemplo lo utilizaremos para <b>Aplicación Web</b>, el nombre pueden elegir el que quieran, y en restricciones si no ponen nada cualquier url podría utilizar su API Key, lo cual no está bueno, por eso mismo sólo le daremos acceso a su <b>http://localhost:3000</b> (O el puerto donde estén corriendo su proceso)
+- Le damos al boton de <b>Crear</b>
+- Ahora ya tenemos nuestra credencial para conectarnos al API Key de Google Sign-In (ID de cliente)
+
+-----------------------------------------------------------------------------
+
+## [Validacion de Token de Google] ([LINK](https://developers.google.com/identity/sign-in/web/backend-auth))
+- Para darle más seguridad a nuestro login con el user de Google debemos utilizar una validación del token que google nos envía como respuesta una vez logeado. 
+- Se realiza en la clase server/routes/login.js y el index.html
 

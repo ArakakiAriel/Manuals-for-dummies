@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Llevo mis cuentas - Google Sign In</title>
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <meta name="google-signin-client_id" content="843246965520-2q5k0dhjmc0o59jvte08rqvdcn68jdov.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script> <!--Con este script podremos conectarnos al API de Gogole-->
+    <meta name="google-signin-client_id" content="843246965520-2q5k0dhjmc0o59jvte08rqvdcn68jdov.apps.googleusercontent.com"> <!--Con este script podremos ingresar la credencial creada y tener acceso al API-->
 </head>
 <body>
     <image id="pic"> </div>
     <div id="name"> </div>
     <div id="email"> </div>
-    <div class="g-signin2" data-onsuccess="onSignIn"></div>    
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>     <!--Boton de google para logearse con cuenta de Google-->
     <script>
         function onSignIn(googleUser) {
             var profile = googleUser.getBasicProfile();
@@ -27,7 +27,9 @@
             document.getElementById("name").innerHTML = name;
             document.getElementById("pic").src = pic;
 
-            var id_token = googleUser.getAuthResponse().id_token;
+            var id_token = googleUser.getAuthResponse().id_token; //Con esta linea podremos validar el token que nos envía Google.
+            console.log("id_token: ", id_token);
+            
 
             var xhr = new XMLHttpRequest();
             xhr.open('POST', '/google');
