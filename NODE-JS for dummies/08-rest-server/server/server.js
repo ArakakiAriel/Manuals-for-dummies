@@ -2,6 +2,8 @@ const colors = require('colors');
 const mongoose = require('mongoose');
 const express = require('express');
 const bodyParser = require('body-parser');
+const path = require('path');
+
 require('./config/config'); //Archivo de configuraciones, de esta forma se levanta automáticamente y lo corre
 
 const app = express();
@@ -12,6 +14,9 @@ app.use(bodyParser.urlencoded({ extended: false })); //Middleware cuando es app.
 // parse application/json
 app.use(bodyParser.json());
 
+// habilitar la carpeta public para que sea publica
+app.use(express.static(path.resolve(__dirname , "../public")));
+
 //Configuracion globar de rutas
 app.use(require('./routes/index'));
 
@@ -20,7 +25,7 @@ mongoose.connect(process.env.URLDB,
         (err, res) => {
     if(err) throw err;
 
-    console.log('Base de datos: ' + 'ONLINE'.green);
+    console.log('Database: ' + 'ONLINE'.green);
 
 });
 mongoose.set("useFindAndModify", false);
@@ -28,5 +33,5 @@ mongoose.set("useCreateIndex", true);
 
 
 app.listen(process.env.PORT, () => {
-    console.log("Escuchando en el puerto", process.env.PORT);
+    console.log("Listening on port ", process.env.PORT);
 });

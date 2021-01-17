@@ -1,12 +1,14 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const _ = require('underscore');
+const messages = require('../constants/messages');
 const app = express();
 const User = require('../models/user');
 const {verifyToken, verifyAdminRole} = require('../middlewares/authentication');
 
 const activeUsers = {state:true}
 //Obtener registros
+//Importante, ver que se realiza verifyToken para ver si se sigue con la ejecución o no
 app.get('/usuario', verifyToken, (req, res) => {
 
     /*Los valores que se encuentren dentro de req.query son enviados en la url de la forma ?limite=valor&desde=otrovalor */
@@ -74,7 +76,7 @@ app.post('/usuario', (req, res) => {
 });
 
 //Actualizar registros  
-app.put('/usuario/:id1',verifyToken, (req, res) => {
+app.put('/usuario/:id1',verifyToken, verifyAdminRole, (req, res) => {
     let id = req.params.id1; //De esta forma podemos pasar parametros desde la url y almacenarlos en una variable
     let body = _.pick(req.body, ['user','img','email','role', 'state']);
    
@@ -113,7 +115,7 @@ let findUserAndDelete = ((id, res) => {
         return res.status(400).json({
             ok:false,
             err: {
-                message: 'No se ha indicado a qué usuario eliminar'
+                message: messages.USER_TO_DELETE_NOT_FOUND
             }
         });
     }
@@ -127,12 +129,12 @@ let findUserAndDelete = ((id, res) => {
         if(userDB.state === true){
             res.json({
                 ok: true,
-                message: `El usuario ${userDB.user} se ha dado de baja de forma satisfactoria`
+                message: `The user "${userDB.user}" was succesfully unsubscribed`
             });
         }else{
             res.json({
                 ok: false,
-                message: `El usuario ${userDB.user} ya se encuentra dado de baja`
+                message: `The user "${userDB.user}" it's already unsubscribed`
             });
         }
     });

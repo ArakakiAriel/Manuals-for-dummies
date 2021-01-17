@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const messages = require('../constants/messages');
 
 
 
@@ -34,7 +35,7 @@ let verifyAdminRole = (req, res, next) => {
         return res.status(400).json({
             ok: false,
             error: {
-                message: 'Usted no tiene autorización para realizar dicha ejecución.'
+                message: messages.USER_NOT_AUTHORIZED
             }
         });
     }

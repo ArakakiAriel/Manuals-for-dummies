@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
+const messages = require('../constants/messages');
 
 //Declaramos un esquema
 let Schema = mongoose.Schema;
@@ -13,17 +14,17 @@ let validRoles = {
 let userSchema = new Schema({
     user:{
         type: String,
-        required: [true, 'User is required'],
+        required: [true, messages.USER_REQUIRED],
         unique: true
     },
     email:{
         type: String,
-        required: [true,"Email is required"],
+        required: [true, messages.EMAIL_REQUIRED],
         unique: true
     },
     password:{
         type: String,
-        required: [true,"Password is required"]
+        required: [true, messages.PASSWORD_REQUIRED]
     },
     img:{
         type: String,
