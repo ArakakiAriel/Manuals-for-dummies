@@ -33,13 +33,8 @@ app.get('/usuario', verifyToken, (req, res) => {
                     users
                 })
             });
-
-            
+                   
         })
-
-
-
-
 });
   
 //Crea nuevos usuarios
